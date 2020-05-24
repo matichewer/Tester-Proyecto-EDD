@@ -4,15 +4,21 @@ package Tester;
 import org.junit.*;                         // For tags
 import static org.junit.Assert.*;           // For assertions
 
+import java.security.acl.LastOwnerException;
+
 import Logica.Logica;
+import TDALista.BoundaryViolationException;
+import TDALista.EmptyListException;
+import TDALista.InvalidPositionException;
 import TDALista.Lista_doble_enlazada;
+import TDALista.Position;
 import TDALista.PositionList;
 
 
 public class TesterPrimerProyecto {
 
 	private Logica log;
-	private PositionList<Integer> l1, l2, l3;
+	private static PositionList<Integer> l1, l2, l3;
 
 	@Before public void setUp(){   
 		log = new Logica();		
@@ -143,13 +149,81 @@ public class TesterPrimerProyecto {
 		assertFalse("bazbabaxababzab", log.chequear_cadena("bazabaxababzab"));			
 	}
 	
+	public <E> boolean listasIguales(PositionList<E> l1, PositionList<E> l2) {
+		boolean toReturn = false;
+		Position<E> p1, p2;
+		
+		if(l1.isEmpty() && l2.isEmpty())
+			toReturn = true;
+		else if(l1.size() == l2.size()) {
+				try {					
+					p1 = l1.first();
+					p2 = l2.first();					
+					while(p1!=l1.last() && p2!=l2.last()) {
+						if(!p1.element().equals(p2.element())) 
+							return false;
+						p1 = l1.next(p1);
+						p2 = l2.next(p2);
+					}
+					if(l1.last().element().equals(l2.last().element()))
+						toReturn = true;	
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}			
+		return toReturn;
+	}
+	
+	
+	@Test public void incisoB_1() {
+		//assertEquals(l3, log.intercalar(l1, l2));
+		assertTrue("l1= - l2= ",listasIguales(l1,l2));
+	}
+
+	@Test public void incisoB_2() {
+		l1.addLast(1);
+		assertFalse("l1=1 - l2= ",listasIguales(l1,l2));
+		l2.addLast(1);
+		assertTrue("l1=1 - l2=1 ",listasIguales(l1,l2));
+		try {
+			System.out.println(l1.first().element().equals(l2.first().element()));
+		} catch (EmptyListException e) {
+			System.out.println("ERROR incisoB_2");
+			e.printStackTrace();
+		}
+	}
 	
 	/*
-	@Test public void incisoB() {
-		assertEquals(l3, log.intercalar(l1, l2));
-		System.out.println(log.intercalar(l1, l2).toString());
+	@Test public void incisoB_4() {
+		l1.addLast(2); l1.addLast(3);
+		l2.addLast(2); l2.addLast(3);		
+		assertTrue("l1=1,2,3 - l2=1,2,3 ",listasIguales(l1,l2));
+		
 	}
-		*/
+
+		@Test public void incisoB_5() {
+		try {
+			l1.remove(l1.first());
+			assertFalse("l1=2,3 - l2=1,2,3 ",listasIguales(l1,l2));
+			l2.remove(l2.first());
+			assertTrue("l1=2,3 - l2=2,3 ",listasIguales(l1,l2));
+
+			l2.remove(l2.first());
+			assertFalse("l1=3 - l2=2,3 ",listasIguales(l1,l2));
+			l2.remove(l2.first());
+			assertFalse("l1= - l2=2,3 ",listasIguales(l1,l2));
+			
+			assertTrue("l3= - l1= ",listasIguales(l3,l2));
+			
+			//System.out.println(log.intercalar(l1, l2).toString());
+		
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	*/
 }
 
 
