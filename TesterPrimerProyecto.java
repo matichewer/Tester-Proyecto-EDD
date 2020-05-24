@@ -149,7 +149,11 @@ public class TesterPrimerProyecto {
 		assertFalse("bazbabaxababzab", log.chequear_cadena("bazabaxababzab"));			
 	}
 	
-	public <E> boolean listasIguales(PositionList<E> l1, PositionList<E> l2) {
+	/*
+	 * Recibe por parámetro 2 listas.
+	 * Retorna TRUE si las listas son iguales, falso en caso contrario.
+	 */
+	private <E> boolean listasIguales(PositionList<E> l1, PositionList<E> l2) {
 		boolean toReturn = false;
 		Position<E> p1, p2;
 		
@@ -174,57 +178,27 @@ public class TesterPrimerProyecto {
 		return toReturn;
 	}
 	
+	@Test public void incisoB_listas_vacias() {
+		assertTrue(listasIguales(log.intercalar(l1, l2), l3));
+	}
 	
 	@Test public void incisoB_1() {
-		//assertEquals(l3, log.intercalar(l1, l2));
-		assertTrue("l1= - l2= ",listasIguales(l1,l2));
-	}
+		l1.addLast(1);
+		l3.addLast(1);
+		assertTrue(listasIguales(log.intercalar(l1, l2), l3));
+	}	
 
 	@Test public void incisoB_2() {
 		l1.addLast(1);
-		assertFalse("l1=1 - l2= ",listasIguales(l1,l2));
-		l2.addLast(1);
-		assertTrue("l1=1 - l2=1 ",listasIguales(l1,l2));
+		l2.addLast(2);
+		l3.addLast(2);
+		l3.addLast(1);
+		assertTrue(listasIguales(log.intercalar(l1, l2), l3));
 	}
 	
-	@Test public void incisoB_3() {
-		l1.addLast(1); 
-		assertFalse("l1=1 - l2= ",listasIguales(l1,l2));
-		assertFalse("l1=1 - l2= ",listasIguales(l2,l1));
-		l2.addLast(1);
-		assertTrue("l1=1 - l2=1 ",listasIguales(l1,l2));
-		assertTrue("l1=1 - l2=1 ",listasIguales(l2,l1));
-		l1.addLast(2); 
-		assertFalse("l1=1,2 - l2= ",listasIguales(l1,l2));
-		assertFalse("l1=1,2 - l2= ",listasIguales(l2,l1));
-		l2.addLast(2);
-		assertTrue("l1=1,2 - l2=1,2 ",listasIguales(l1,l2));
-		assertTrue("l1=1,2 - l2=1,2 ",listasIguales(l2,l1));
-		l2.addLast(3);		
-		assertFalse("l1=1,2 - l2=1,2,3 ",listasIguales(l1,l2));
-		assertFalse("l1=1,2 - l2=1,2,3 ",listasIguales(l2,l1));
-		l1.addLast(3);
-		assertTrue("l1=1,2,3 - l2=1,2,3 ",listasIguales(l1,l2));
-		assertTrue("l1=1,2,3 - l2=1,2,3 ",listasIguales(l2,l1));
-		try {
-			l1.remove(l1.first());
-			assertFalse("l1=2,3 - l2=1,2,3 ",listasIguales(l1,l2));
-			assertFalse("l1=2,3 - l2=1,2,3 ",listasIguales(l2,l1));
-			l1.remove(l1.first());
-			assertFalse("l1=3 - l2=1,2,3 ",listasIguales(l1,l2));
-			assertFalse("l1=3 - l2=1,2,3 ",listasIguales(l2,l1));
-			l1.remove(l1.first());
-			assertFalse("l1= - l2=1,2,3 ",listasIguales(l1,l2));
-			assertFalse("l1= - l2=1,2,3 ",listasIguales(l2,l1));
-			assertTrue("l1= - l3= ",listasIguales(l3,l1));
-			
-		} catch (Exception e) {
-			System.out.println("ERROR incisoB_3");
-			e.printStackTrace();
-		}
-		
-		
-	}
+	
+	
+	
 }
 
 
