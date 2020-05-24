@@ -178,25 +178,184 @@ public class TesterPrimerProyecto {
 		return toReturn;
 	}
 	
+	/*
+	 * Recibe por parámetro una lista y la devuelve en formato string
+	 */
+	private <E> String toString(PositionList<E> l) {
+		String toReturn = "{";
+		for(E elem : l) {
+			toReturn = toReturn + elem.toString() + ", ";
+		}		
+		toReturn += "}";
+		toReturn = toReturn.replaceAll(", }", "}");
+		return toReturn;
+	}
+	
 	@Test public void incisoB_listas_vacias() {
 		assertTrue(listasIguales(log.intercalar(l1, l2), l3));
 	}
 	
-	@Test public void incisoB_1() {
+	@Test public void incisoB_01() {
+		System.out.println("Método incisoB_01: ");
 		l1.addLast(1);
 		l3.addLast(1);
+		System.out.println("L1 = "+toString(l1));
+		System.out.println("L2 = "+toString(l2));
+		System.out.println("El resultado deberia ser   = "+toString(l3));
+		System.out.println("La respuesta del método es = "+toString(log.intercalar(l1, l2)));
+		System.out.println(); System.out.println();
 		assertTrue(listasIguales(log.intercalar(l1, l2), l3));
 	}	
 
-	@Test public void incisoB_2() {
+	@Test public void incisoB_02() {
+		System.out.println("Método incisoB_02: ");
 		l1.addLast(1);
 		l2.addLast(2);
 		l3.addLast(2);
 		l3.addLast(1);
+		System.out.println("L1 = "+toString(l1));
+		System.out.println("L2 = "+toString(l2));
+		System.out.println("El resultado deberia ser   = "+toString(l3));
+		System.out.println("La respuesta del método es = "+toString(log.intercalar(l1, l2)));
+		System.out.println(); System.out.println();
 		assertTrue(listasIguales(log.intercalar(l1, l2), l3));
 	}
 	
+
+	@Test public void incisoB_03() {
+		System.out.println("Método incisoB_03: ");
+		l1.addLast(1);
+		l2.addLast(1);
+		l3.addLast(1);
+		System.out.println("L1 = "+toString(l1));
+		System.out.println("L2 = "+toString(l2));
+		System.out.println("El resultado deberia ser   = "+toString(l3));
+		System.out.println("La respuesta del método es = "+toString(log.intercalar(l1, l2)));
+		System.out.println(); System.out.println();
+		assertTrue(listasIguales(log.intercalar(l1, l2), l3));
+	}
 	
+
+	@Test public void incisoB_04() {
+		System.out.println("Método incisoB_04: ");
+		
+		l1.addLast(1); l1.addLast(3); l1.addLast(5);
+		
+		l2.addLast(2); l2.addLast(4); l2.addLast(6);
+		
+		l3.addLast(6); l3.addLast(5); l3.addLast(4);
+		l3.addLast(3); l3.addLast(2); l3.addLast(1); 
+		System.out.println("L1 = "+toString(l1));
+		System.out.println("L2 = "+toString(l2));
+		System.out.println("El resultado deberia ser   = "+toString(l3));
+		System.out.println("La respuesta del método es = "+toString(log.intercalar(l1, l2)));
+		System.out.println(); System.out.println();
+		assertTrue(listasIguales(log.intercalar(l1, l2), l3));
+	}
+	
+
+	@Test public void incisoB_05() {
+		System.out.println("Método incisoB_05: ");
+		
+		l1.addLast(1); l1.addLast(3); l1.addLast(3); l1.addLast(5); 
+		
+		l2.addLast(2); l2.addLast(2); l2.addLast(4); l2.addLast(6); l2.addLast(6);
+		
+		l3.addLast(6); l3.addLast(5); l3.addLast(4);
+		l3.addLast(3); l3.addLast(2); l3.addLast(1); 
+		System.out.println("L1 = "+toString(l1));
+		System.out.println("L2 = "+toString(l2));
+		System.out.println("El resultado deberia ser   = "+toString(l3));
+		System.out.println("La respuesta del método es = "+toString(log.intercalar(l1, l2)));
+		System.out.println(); System.out.println();
+		assertTrue(listasIguales(log.intercalar(l1, l2), l3));
+	}
+	
+
+	@Test public void incisoB_06() {
+		System.out.println("Método incisoB_06: ");
+		
+		l1.addLast(1); l1.addLast(2); l1.addLast(3); l1.addLast(5); 
+		
+		l2.addLast(1); l2.addLast(2); l2.addLast(4); l2.addLast(6);
+		
+		l3.addLast(6); l3.addLast(5); l3.addLast(4);
+		l3.addLast(3); l3.addLast(2); l3.addLast(1); 
+		System.out.println("L1 = "+toString(l1));
+		System.out.println("L2 = "+toString(l2));
+		System.out.println("El resultado deberia ser   = "+toString(l3));
+		System.out.println("La respuesta del método es = "+toString(log.intercalar(l1, l2)));
+		System.out.println(); System.out.println();
+		assertTrue(listasIguales(log.intercalar(l1, l2), l3));
+	}
+
+	@Test public void incisoB_07() {
+		System.out.println("Método incisoB_07: ");
+		
+		l1.addLast(1); l1.addLast(2); l1.addLast(3); 
+		
+		l2.addLast(1); l2.addLast(2); l2.addLast(3);
+		
+		l3.addLast(3); l3.addLast(2); l3.addLast(1);
+		System.out.println("L1 = "+toString(l1));
+		System.out.println("L2 = "+toString(l2));
+		System.out.println("El resultado deberia ser   = "+toString(l3));
+		System.out.println("La respuesta del método es = "+toString(log.intercalar(l1, l2)));
+		System.out.println(); System.out.println();
+		assertTrue(listasIguales(log.intercalar(l1, l2), l3));
+	}
+	
+
+	@Test public void incisoB_08() {
+		System.out.println("Método incisoB_08: ");
+		
+		l1.addLast(1); l1.addLast(2); l1.addLast(2); l1.addLast(3); 
+		l1.addLast(5); l1.addLast(5); l1.addLast(5); l1.addLast(5);  
+		
+		l2.addLast(2); l2.addLast(2); l2.addLast(2); l2.addLast(2); 
+		l2.addLast(4); l2.addLast(6); l2.addLast(7);
+		
+		l3.addLast(7); l3.addLast(6); l3.addLast(5);
+		l3.addLast(4); l3.addLast(3); l3.addLast(2); l3.addLast(1); 
+		System.out.println("L1 = "+toString(l1));
+		System.out.println("L2 = "+toString(l2));
+		System.out.println("El resultado deberia ser   = "+toString(l3));
+		System.out.println("La respuesta del método es = "+toString(log.intercalar(l1, l2)));
+		System.out.println(); System.out.println();
+		assertTrue(listasIguales(log.intercalar(l1, l2), l3));
+	}
+	
+
+	@Test public void incisoB_09() {
+		System.out.println("Método incisoB_09: ");
+		
+		l1.addLast(1); l1.addLast(1); l1.addLast(1); l1.addLast(1); l1.addLast(1); l1.addLast(1); 
+		
+		l3.addLast(1); 
+		System.out.println("L1 = "+toString(l1));
+		System.out.println("L2 = "+toString(l2));
+		System.out.println("El resultado deberia ser   = "+toString(l3));
+		System.out.println("La respuesta del método es = "+toString(log.intercalar(l1, l2)));
+		System.out.println(); System.out.println();
+		assertTrue(listasIguales(log.intercalar(l1, l2), l3));
+	}
+
+
+	@Test public void incisoB_10() {
+		System.out.println("Método incisoB_10: ");
+		
+		l1.addLast(1); l1.addLast(1); l1.addLast(1); l1.addLast(1); l1.addLast(1); l1.addLast(1); 
+		
+		l2.addLast(1); l2.addLast(1); l2.addLast(1); l2.addLast(1); 
+		
+		l3.addLast(1); 
+		System.out.println("L1 = "+toString(l1));
+		System.out.println("L2 = "+toString(l2));
+		System.out.println("El resultado deberia ser   = "+toString(l3));
+		System.out.println("La respuesta del método es = "+toString(log.intercalar(l1, l2)));
+		System.out.println(); System.out.println();
+		assertTrue(listasIguales(log.intercalar(l1, l2), l3));
+	}
 	
 	
 }
